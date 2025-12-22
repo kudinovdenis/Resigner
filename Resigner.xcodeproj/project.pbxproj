@@ -7,11 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD33FA182EF19D9600C6B386 /* ResignerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A72A2EE05E260042868C /* ResignerLib.framework */; };
+		DD33FA1D2EF19E9B00C6B386 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = DD33FA1C2EF19E9B00C6B386 /* ArgumentParser */; };
+		DD33FA432EF1A25600C6B386 /* ResignerLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD56A72A2EE05E260042868C /* ResignerLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DD56A7302EE05E260042868C /* ResignerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A72A2EE05E260042868C /* ResignerLib.framework */; };
 		DD56A7312EE05E260042868C /* ResignerLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A72A2EE05E260042868C /* ResignerLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DD33FA152EF19D9300C6B386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD56A70E2EE05E0C0042868C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD56A7292EE05E260042868C;
+			remoteInfo = ResignerLib;
+		};
 		DD56A72E2EE05E260042868C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DD56A70E2EE05E0C0042868C /* Project object */;
@@ -22,6 +32,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		DD33FA0C2EF19D8800C6B386 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 16;
+			files = (
+				DD33FA432EF1A25600C6B386 /* ResignerLib.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		DD56A7352EE05E260042868C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -36,11 +56,38 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DD33FA0E2EF19D8800C6B386 /* resigner-cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "resigner-cli"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD33FA232EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftsourceinfo"; sourceTree = "<group>"; };
+		DD33FA252EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftdoc"; sourceTree = "<group>"; };
+		DD33FA262EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftmodule"; sourceTree = "<group>"; };
+		DD33FA272EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "arm64-apple-macos.abi.json"; sourceTree = "<group>"; };
+		DD33FA292EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftsourceinfo"; sourceTree = "<group>"; };
+		DD33FA2B2EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftdoc"; sourceTree = "<group>"; };
+		DD33FA2C2EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftmodule"; sourceTree = "<group>"; };
+		DD33FA2D2EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "arm64-apple-macos.abi.json"; sourceTree = "<group>"; };
+		DD33FA302EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftsourceinfo"; sourceTree = "<group>"; };
+		DD33FA322EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftdoc"; sourceTree = "<group>"; };
+		DD33FA332EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftmodule"; sourceTree = "<group>"; };
+		DD33FA342EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "arm64-apple-macos.abi.json"; sourceTree = "<group>"; };
+		DD33FA362EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftsourceinfo"; sourceTree = "<group>"; };
+		DD33FA382EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftdoc"; sourceTree = "<group>"; };
+		DD33FA392EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = "arm64-apple-macos.swiftmodule"; sourceTree = "<group>"; };
+		DD33FA3A2EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "arm64-apple-macos.abi.json"; sourceTree = "<group>"; };
+		DD33FA3C2EF1A0BC00C6B386 /* ArgumentParser.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = ArgumentParser.o; sourceTree = "<group>"; };
+		DD33FA3D2EF1A0BC00C6B386 /* ArgumentParserToolInfo.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = ArgumentParserToolInfo.o; sourceTree = "<group>"; };
+		DD33FA3E2EF1A0BC00C6B386 /* Resigner.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = Resigner.app; sourceTree = "<group>"; };
+		DD33FA3F2EF1A0BC00C6B386 /* resigner-cli */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "resigner-cli"; sourceTree = "<group>"; };
+		DD33FA402EF1A0BC00C6B386 /* ResignerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ResignerLib.framework; sourceTree = "<group>"; };
 		DD56A7162EE05E0C0042868C /* Resigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Resigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD56A72A2EE05E260042868C /* ResignerLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResignerLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		DD33FA0F2EF19D8800C6B386 /* resigner-cli */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "resigner-cli";
+			sourceTree = "<group>";
+		};
 		DD56A7182EE05E0C0042868C /* Resigner */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Resigner;
@@ -54,6 +101,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DD33FA0B2EF19D8800C6B386 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD33FA1D2EF19E9B00C6B386 /* ArgumentParser in Frameworks */,
+				DD33FA182EF19D9600C6B386 /* ResignerLib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD56A7132EE05E0C0042868C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,11 +128,130 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD33FA172EF19D9600C6B386 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD33FA242EF1A0BC00C6B386 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA232EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		DD33FA282EF1A0BC00C6B386 /* ArgumentParser.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA242EF1A0BC00C6B386 /* Project */,
+				DD33FA252EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */,
+				DD33FA262EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */,
+				DD33FA272EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */,
+			);
+			path = ArgumentParser.swiftmodule;
+			sourceTree = "<group>";
+		};
+		DD33FA2A2EF1A0BC00C6B386 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA292EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		DD33FA2E2EF1A0BC00C6B386 /* ArgumentParserToolInfo.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA2A2EF1A0BC00C6B386 /* Project */,
+				DD33FA2B2EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */,
+				DD33FA2C2EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */,
+				DD33FA2D2EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */,
+			);
+			path = ArgumentParserToolInfo.swiftmodule;
+			sourceTree = "<group>";
+		};
+		DD33FA2F2EF1A0BC00C6B386 /* PackageFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PackageFrameworks;
+			sourceTree = "<group>";
+		};
+		DD33FA312EF1A0BC00C6B386 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA302EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		DD33FA352EF1A0BC00C6B386 /* Resigner.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA312EF1A0BC00C6B386 /* Project */,
+				DD33FA322EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */,
+				DD33FA332EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */,
+				DD33FA342EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */,
+			);
+			path = Resigner.swiftmodule;
+			sourceTree = "<group>";
+		};
+		DD33FA372EF1A0BC00C6B386 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA362EF1A0BC00C6B386 /* arm64-apple-macos.swiftsourceinfo */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		DD33FA3B2EF1A0BC00C6B386 /* resigner_cli.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA372EF1A0BC00C6B386 /* Project */,
+				DD33FA382EF1A0BC00C6B386 /* arm64-apple-macos.swiftdoc */,
+				DD33FA392EF1A0BC00C6B386 /* arm64-apple-macos.swiftmodule */,
+				DD33FA3A2EF1A0BC00C6B386 /* arm64-apple-macos.abi.json */,
+			);
+			path = resigner_cli.swiftmodule;
+			sourceTree = "<group>";
+		};
+		DD33FA412EF1A0BC00C6B386 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA282EF1A0BC00C6B386 /* ArgumentParser.swiftmodule */,
+				DD33FA2E2EF1A0BC00C6B386 /* ArgumentParserToolInfo.swiftmodule */,
+				DD33FA2F2EF1A0BC00C6B386 /* PackageFrameworks */,
+				DD33FA352EF1A0BC00C6B386 /* Resigner.swiftmodule */,
+				DD33FA3B2EF1A0BC00C6B386 /* resigner_cli.swiftmodule */,
+				DD33FA3C2EF1A0BC00C6B386 /* ArgumentParser.o */,
+				DD33FA3D2EF1A0BC00C6B386 /* ArgumentParserToolInfo.o */,
+				DD33FA3E2EF1A0BC00C6B386 /* Resigner.app */,
+				DD33FA3F2EF1A0BC00C6B386 /* resigner-cli */,
+				DD33FA402EF1A0BC00C6B386 /* ResignerLib.framework */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		DD33FA422EF1A0BC00C6B386 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD33FA412EF1A0BC00C6B386 /* Debug */,
+			);
+			name = Products;
+			path = "/Users/kudinov-mb/Library/Developer/Xcode/DerivedData/Resigner-eocdxdozithswyhjwavlqctvmtbm/Build/Products";
+			sourceTree = "<absolute>";
+		};
 		DD56A70D2EE05E0C0042868C = {
 			isa = PBXGroup;
 			children = (
+				DD33FA422EF1A0BC00C6B386 /* Products */,
 				DD56A7182EE05E0C0042868C /* Resigner */,
 				DD56A72B2EE05E260042868C /* ResignerLib */,
+				DD33FA0F2EF19D8800C6B386 /* resigner-cli */,
+				DD33FA172EF19D9600C6B386 /* Frameworks */,
 				DD56A7172EE05E0C0042868C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +261,7 @@
 			children = (
 				DD56A7162EE05E0C0042868C /* Resigner.app */,
 				DD56A72A2EE05E260042868C /* ResignerLib.framework */,
+				DD33FA0E2EF19D8800C6B386 /* resigner-cli */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +279,31 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		DD33FA0D2EF19D8800C6B386 /* resigner-cli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD33FA122EF19D8800C6B386 /* Build configuration list for PBXNativeTarget "resigner-cli" */;
+			buildPhases = (
+				DD33FA0A2EF19D8800C6B386 /* Sources */,
+				DD33FA0B2EF19D8800C6B386 /* Frameworks */,
+				DD33FA0C2EF19D8800C6B386 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD33FA1B2EF19E9700C6B386 /* PBXTargetDependency */,
+				DD33FA162EF19D9300C6B386 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DD33FA0F2EF19D8800C6B386 /* resigner-cli */,
+			);
+			name = "resigner-cli";
+			packageProductDependencies = (
+				DD33FA1C2EF19E9B00C6B386 /* ArgumentParser */,
+			);
+			productName = "resigner-cli";
+			productReference = DD33FA0E2EF19D8800C6B386 /* resigner-cli */;
+			productType = "com.apple.product-type.tool";
+		};
 		DD56A7152EE05E0C0042868C /* Resigner */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD56A7222EE05E0E0042868C /* Build configuration list for PBXNativeTarget "Resigner" */;
@@ -160,6 +361,9 @@
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					DD33FA0D2EF19D8800C6B386 = {
+						CreatedOnToolsVersion = 16.3;
+					};
 					DD56A7152EE05E0C0042868C = {
 						CreatedOnToolsVersion = 16.3;
 					};
@@ -177,6 +381,9 @@
 			);
 			mainGroup = DD56A70D2EE05E0C0042868C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DD33FA192EF19E8700C6B386 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD56A7172EE05E0C0042868C /* Products */;
 			projectDirPath = "";
@@ -184,6 +391,7 @@
 			targets = (
 				DD56A7152EE05E0C0042868C /* Resigner */,
 				DD56A7292EE05E260042868C /* ResignerLib */,
+				DD33FA0D2EF19D8800C6B386 /* resigner-cli */,
 			);
 		};
 /* End PBXProject section */
@@ -206,6 +414,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DD33FA0A2EF19D8800C6B386 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD56A7122EE05E0C0042868C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +438,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DD33FA162EF19D9300C6B386 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD56A7292EE05E260042868C /* ResignerLib */;
+			targetProxy = DD33FA152EF19D9300C6B386 /* PBXContainerItemProxy */;
+		};
+		DD33FA1B2EF19E9700C6B386 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = DD33FA1A2EF19E9700C6B386 /* ArgumentParser */;
+		};
 		DD56A72F2EE05E260042868C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DD56A7292EE05E260042868C /* ResignerLib */;
@@ -231,6 +455,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		DD33FA132EF19D8800C6B386 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6LH8AZ3RM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DD33FA142EF19D8800C6B386 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6LH8AZ3RM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		DD56A7202EE05E0E0042868C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -478,6 +726,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DD33FA122EF19D8800C6B386 /* Build configuration list for PBXNativeTarget "resigner-cli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD33FA132EF19D8800C6B386 /* Debug */,
+				DD33FA142EF19D8800C6B386 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DD56A7112EE05E0C0042868C /* Build configuration list for PBXProject "Resigner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -506,6 +763,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD33FA192EF19E8700C6B386 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD33FA1A2EF19E9700C6B386 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD33FA192EF19E8700C6B386 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		DD33FA1C2EF19E9B00C6B386 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD33FA192EF19E8700C6B386 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD56A70E2EE05E0C0042868C /* Project object */;
 }

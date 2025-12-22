@@ -9,9 +9,11 @@ public final class AppParser {
 
     let appUrl: URL
     let fileManager = FileManager.default
+    let shellExecutor: ShellExecutable
 
-    public init(appPath: String) throws {
+    init(appPath: String, shellExecutor: ShellExecutable) throws {
         appUrl = URL(filePath: appPath, directoryHint: .isDirectory)
+        self.shellExecutor = shellExecutor
         guard appUrl.startAccessingSecurityScopedResource() else {
             throw Error.noPermissionsToAccessingResource
         }
@@ -26,7 +28,7 @@ public final class AppParser {
     }
 
     public func parse() throws -> AppContainer {
-        try AppContainer(url: appUrl)
+        try AppContainer(url: appUrl, shellExecutor: shellExecutor)
     }
 
 }

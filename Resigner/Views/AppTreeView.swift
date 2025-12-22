@@ -63,7 +63,12 @@ struct DetailedInformationView: View {
                     Text(key.description) // Display the key
                         .fontWeight(.bold)
                     Spacer()
-                    Text("\(String(describing: dictionary[key]))") // Display the value
+                    if let value = dictionary[key] {
+                        Text("\(value)")
+                    }
+                    else {
+                        Text("nil")
+                    }
                 }
             }
         }

@@ -17,7 +17,7 @@ public final class SigningInfoStorage: Codable {
 
 }
 
-public final class Resigner: Codable {
+public final class Resigner {
 
     enum Error: Swift.Error {
         case mismatchIdentifiers
@@ -26,21 +26,31 @@ public final class Resigner: Codable {
     }
 
     public let signingInfoStorage: SigningInfoStorage
+    private let consoleLogsCollector: ConsoleLogsCollector
+    private let shellExecutor: ShellExecutable
 
-    public init() {
-        signingInfoStorage = SigningInfoStorage()
+    init(consoleLogsCollector: ConsoleLogsCollector, signingInfoStorage: SigningInfoStorage) {
+        self.consoleLogsCollector = consoleLogsCollector
+        self.signingInfoStorage = signingInfoStorage
+        shellExecutor = ShellExecutable(consoleLogsCollector: consoleLogsCollector)
     }
 
     public func savePersistentState() throws {
-        let encoded = try JSONEncoder().encode(self)
+        consoleLogsCollector.addLog("Saving resigner state")
+        defer { consoleLogsCollector.addLog("Done") }
+
+        let encodedSignInfo = try JSONEncoder().encode(signingInfoStorage)
         let appSupportUrl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         let persistentStorageFileUrl = appSupportUrl.appending(path: "ps")
         _ = persistentStorageFileUrl.startAccessingSecurityScopedResource()
         defer { persistentStorageFileUrl.stopAccessingSecurityScopedResource() }
-        try encoded.write(to: persistentStorageFileUrl)
+        try encodedSignInfo.write(to: persistentStorageFileUrl)
     }
 
-    public static func loadPersistentState() throws -> Resigner {
+    public static func loadPersistentState(consoleLogsCollector: ConsoleLogsCollector) throws -> Resigner {
+        consoleLogsCollector.addLog("Loading resigner state")
+        defer { consoleLogsCollector.addLog("Done") }
+
         let decoder = JSONDecoder()
         let appSupportUrl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         let persistentStorageFileUrl = appSupportUrl.appending(path: "ps")
@@ -48,15 +58,24 @@ public final class Resigner: Codable {
         defer { persistentStorageFileUrl.stopAccessingSecurityScopedResource() }
 
         guard let content = FileManager.default.contents(atPath: persistentStorageFileUrl.path) else {
-            return .init()
+            return .init(consoleLogsCollector: consoleLogsCollector, signingInfoStorage: SigningInfoStorage())
         }
 
-        let resigner = try decoder.decode(Resigner.self, from: content)
-        return resigner
+        do {
+            let signingInfoStorage = try decoder.decode(SigningInfoStorage.self, from: content)
+            consoleLogsCollector.addLog("New format for signing info found")
+            let resigner = Resigner(consoleLogsCollector: consoleLogsCollector, signingInfoStorage: signingInfoStorage)
+            return resigner
+        }
+        catch {
+            consoleLogsCollector.addLog("No signing info in ps")
+        }
+
+        return Resigner(consoleLogsCollector: consoleLogsCollector, signingInfoStorage: SigningInfoStorage())
     }
 
     func makeParser(appPath: String) throws -> AppParser {
-        return try AppParser(appPath: appPath)
+        return try AppParser(appPath: appPath, shellExecutor: shellExecutor)
     }
 
     public func checkProvisioningProfile(profile url: URL, for appcontainer: AppContainer) throws {
@@ -91,7 +110,6 @@ public final class Resigner: Codable {
 
     public func resign(appcontainer: AppContainer) throws {
         let certificateName = "Apple Development: Denis Kudinov (AV8NQCTK49)"
-        let processExecutor = ShellExecutable()
 
         for watch in appcontainer.watch {
             try resign(appcontainer: watch)
@@ -106,19 +124,24 @@ public final class Resigner: Codable {
         }
 
         for framework in appcontainer.frameworks {
-            // resign
             // dylibs???
             try removeCodeSignDir(relatedTo: framework)
-            try signBinary(framework, certificateName: certificateName, processExecutor: processExecutor)
+            try signBinary(framework, certificateName: certificateName, processExecutor: shellExecutor)
         }
 
         try removeCodeSignDir(relatedTo: appcontainer)
-        try signBinary(appcontainer, certificateName: certificateName, processExecutor: processExecutor)
+        try signBinary(appcontainer, certificateName: certificateName, processExecutor: shellExecutor)
+    }
+
+    public func makeAppParser(appPath: String) throws -> AppParser {
+        return try AppParser(appPath: appPath, shellExecutor: shellExecutor)
     }
 
     private func removeCodeSignDir(relatedTo: MachOContainer) throws {
         let codeSignatureDirUrl = relatedTo.url.appending(components: "_CodeSignature")
-        try FileManager.default.removeItem(at: codeSignatureDirUrl)
+        if FileManager.default.fileExists(atPath: codeSignatureDirUrl.path) {
+            try FileManager.default.removeItem(at: codeSignatureDirUrl)
+        }
     }
 
     private func signBinary(_ container: MachOContainer, certificateName: String, processExecutor: ShellExecutable) throws {
@@ -149,7 +172,7 @@ public final class Resigner: Codable {
         }
 
         let result = processExecutor.execute(cmd)
-        print("Output: \(result)")
+        consoleLogsCollector.addLog("Output: \(result)")
     }
 
 }

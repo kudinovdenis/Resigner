@@ -10,9 +10,10 @@ struct ResignerApp: App {
     }
 
     var body: some Scene {
-        Window("title", id: UUID().uuidString) {
+        Window("Resigner", id: UUID().uuidString) {
             MainAppView(services: services)
         }
+        .defaultSize(width: 1000, height: 800)
         .commands {
             CommandGroup(after: .newItem) {
                 Button("Open...") {
@@ -25,7 +26,7 @@ struct ResignerApp: App {
                         try services.resigner.savePersistentState()
                     }
                     catch {
-                        print("Error: \(error)")
+                        services.consoleLogsCollector.addLog("Error: \(error)")
                     }
                 }
                 .keyboardShortcut("s")
@@ -34,10 +35,11 @@ struct ResignerApp: App {
                     do {
                         if let appcontainer = services.currentAppcontainer {
                             try services.resigner.resign(appcontainer: appcontainer)
+                            services.consoleLogsCollector.addLog("done")
                         }
                     }
                     catch {
-                        print("Error: \(error)")
+                        services.consoleLogsCollector.addLog("Error: \(error)")
                     }
                 }
                 .keyboardShortcut("r")

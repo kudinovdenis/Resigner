@@ -151,7 +151,9 @@ public final class InfoPlist: File {
     public let teamId: String?
 
     override init(url: URL) throws {
-        let dict = NSDictionary.init(contentsOf: url)!
+        guard let dict = NSDictionary.init(contentsOf: url) else {
+            fatalError("Missing file: \(url.path)")
+        }
         content = dict as! [String : Any]
         bundleId = (content["CFBundleIdentifier"] as? String) ?? "Unknown"
         executableName = (content["CFBundleExecutable"] as? String) ?? "Unknown"
@@ -167,9 +169,10 @@ public final class MachOBinary: File {
 
     public var entitlements: [String: Any] = [:]
 
-    override init(url: URL) throws {
-        let shellExecutable = ShellExecutable()
-        let result = shellExecutable.execute(["codesign",  "-d", "--entitlements", ":-", "\(url.path)", "-vvv"])
+    convenience init(url: URL, shellExecutor: ShellExecutable) throws {
+        try self.init(url: url)
+
+        let result = shellExecutor.execute(["codesign",  "-d", "--entitlements", ":-", "\(url.path)", "-vvv"])
 
         let components = result.split(separator: "<?xml")
         if components.count == 2 {
@@ -181,7 +184,6 @@ public final class MachOBinary: File {
 
             entitlements = parsedDict ?? [:]
         }
-        try super.init(url: url)
     }
 
 }
@@ -201,12 +203,12 @@ public class Framework: Directory, MachOContainer {
     public let binary: MachOBinary
     public let infoPlist: InfoPlist
 
-    override init(url: URL) throws {
+    init(url: URL, shellExecutor: ShellExecutable) throws {
         let plistUrl = url.appending(path: "Info.plist")
         self.infoPlist = try InfoPlist(url: plistUrl)
 
         let binaryUrl = url.appending(path: infoPlist.executableName)
-        self.binary = try MachOBinary(url: binaryUrl)
+        self.binary = try MachOBinary(url: binaryUrl, shellExecutor: shellExecutor)
 
         try super.init(url: url)
     }
@@ -231,12 +233,12 @@ public class AppContainer: Directory, MachOContainer {
     public let binary: MachOBinary
     public let infoPlist: InfoPlist
 
-    override init(url: URL) throws {
+    init(url: URL, shellExecutor: ShellExecutable) throws {
         let plistUrl = url.appending(path: "Info.plist")
         self.infoPlist = try InfoPlist(url: plistUrl)
 
         let binaryUrl = url.appending(path: infoPlist.executableName)
-        self.binary = try MachOBinary(url: binaryUrl)
+        self.binary = try MachOBinary(url: binaryUrl, shellExecutor: shellExecutor)
 
         try super.init(url: url)
 
@@ -257,7 +259,7 @@ public class AppContainer: Directory, MachOContainer {
                     continue
                 }
 
-                let framework = try Framework(url: frameworkPath)
+                let framework = try Framework(url: frameworkPath, shellExecutor: shellExecutor)
 
                 frameworks.append(framework)
             }
@@ -280,7 +282,7 @@ public class AppContainer: Directory, MachOContainer {
                     continue
                 }
 
-                let plugin = try Plugin(url: pluginPath)
+                let plugin = try Plugin(url: pluginPath, shellExecutor: shellExecutor)
 
                 plugins.append(plugin)
             }
@@ -303,7 +305,7 @@ public class AppContainer: Directory, MachOContainer {
                     continue
                 }
 
-                let `extension` = try Extension(url: extensionPath)
+                let `extension` = try Extension(url: extensionPath, shellExecutor: shellExecutor)
 
                 extensions.append(`extension`)
             }
@@ -326,7 +328,7 @@ public class AppContainer: Directory, MachOContainer {
                     continue
                 }
 
-                let watchKitApp = try WatchKitApp(url: watchBundlePath)
+                let watchKitApp = try WatchKitApp(url: watchBundlePath, shellExecutor: shellExecutor)
 
                 watch.append(watchKitApp)
             }

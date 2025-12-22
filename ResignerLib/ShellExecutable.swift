@@ -2,8 +2,14 @@ import Foundation
 
 final class ShellExecutable {
 
+    private let consoleLogsCollector: ConsoleLogsCollector
+
+    init(consoleLogsCollector: ConsoleLogsCollector) {
+        self.consoleLogsCollector = consoleLogsCollector
+    }
+
     func execute(_ cmd: [String]) -> String {
-        print("executing $ \(cmd.joined(separator: " "))")
+        consoleLogsCollector.addLog("executing $ \(cmd.joined(separator: " "))")
         let task = Process()
 
         let pipe = Pipe()
